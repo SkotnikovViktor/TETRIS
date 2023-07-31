@@ -5,11 +5,26 @@ import sys
 import random
 
 
+
+# Создания класса (Блоков падающих тетрисов)
+class CreateBlock():
+
+	# Создания тетрис блока (2х2) (кубик)
+	def __init__(self):
+		pygame.draw.rect(screen, (0, 0, 0), (random_spawn_block, y_down, width, heitd))
+		pygame.draw.rect(screen, (0, 0, 0), (random_spawn_block+31, y_down, width, heitd))
+		pygame.draw.rect(screen, (0, 0, 0), (random_spawn_block , y_down+31, width, heitd))
+		pygame.draw.rect(screen, (0, 0, 0), (random_spawn_block+31, y_down+31, width, heitd))
+
+
+
 # Создание переменных
 runing = True
 width = heitd = 30
 margin = 1
-
+y_down = 0
+random_spawn_block = random.choice([283,314,345,376,407,438])
+clock = pygame.time.Clock()
 
 # Активация библиотеки pygame
 pygame.init()
@@ -37,25 +52,23 @@ pygame.display.set_caption("TETRIS")
 
 # Создание вечного цикла
 while runing:
-	#fontTET = pygame.font.Font('PressStart2P-Regular.ttf', 50)
-	#text_tet = fontTET.render('TETRIS', False, (color_text_tet, color_text_tet2, color_text_tet3))
+
+	# Обработка пола центральной карты (дабы блоки не проваливались через мир)
+	if y_down<620:
+		y_down = y_down + 1
+	elif y_down>=620:
+		y_down=620
+
 
 	# Указываем цвет фона
 	screen.fill((0, 128, 255))
 
-	# Отрисовка квадратов с их кордами (Номер блока создания: 1)
-	#screen.blit(world, (200, 889))
-	#screen.blit(suqre,(-350,0))
-	#screen.blit(suqre2,(520,0))
 
 
-
-
-
-	for i in range(10000):
-		color_text_tet = random.randint(0, 255)
-		color_text_tet2 = random.randint(0, 255)
-		color_text_tet3 = random.randint(0, 255)
+	#for i in range(10000):
+	#	color_text_tet = random.randint(0, 255)
+	#	color_text_tet2 = random.randint(0, 255)
+	#	color_text_tet3 = random.randint(0, 255)
 
 
 
@@ -65,20 +78,22 @@ while runing:
 			runing = False
 			pygame.quit()
 
-
+# Создание правого не игрового блока(для отражения информации)
 	for col in range(7):
 		for row in range(29):
 			x = col*width+(col+1)*margin
 			y = row*heitd+(row+1)*margin
 			pygame.draw.rect(screen,(255,0,0), (x,y,width,heitd))
 
-
+# Левое не игровое поле(для отображения онформации)
 	for col1 in range(7):
 		for row1 in range(29):
 			x = col1*width+(col1+1)*margin+533
 			y = row1*heitd+(row1+1)*margin+0
 			pygame.draw.rect(screen,(255,0,0), (x,y,width,heitd))
 
+
+# Создание блоков (главного поля где падают кубики)
 	for col2 in range(10):
 		for row2 in range(20):
 			x = col2*width+(col2+1)*margin+220
@@ -98,10 +113,12 @@ while runing:
 	text_tet_CRT = fontCRT.render('Легендарная 8-ми битная игра.', False, (255,255,255))
 	screen.blit(text_tet_CRT, (10, 50))
 
-
-
+	createblock = CreateBlock()
 	# Обновление экрана
 	pygame.display.update()
+
+	# Ограничение кадров игры
+	clock.tick(20)
 
 
 
