@@ -11,10 +11,23 @@ class CreateBlock():
 
 	# Создания тетрис блока (2х2) (кубик)
 	def __init__(self):
-		pygame.draw.rect(screen, (0, 0, 0), (random_spawn_block, y_down, width, heitd))
-		pygame.draw.rect(screen, (0, 0, 0), (random_spawn_block+31, y_down, width, heitd))
-		pygame.draw.rect(screen, (0, 0, 0), (random_spawn_block , y_down+31, width, heitd))
-		pygame.draw.rect(screen, (0, 0, 0), (random_spawn_block+31, y_down+31, width, heitd))
+		##pygame.draw.rect(screen, (255, 255, 0), (random_spawn_block_four_block, y_down, width, heitd))
+		##pygame.draw.rect(screen, (255, 255, 0), (random_spawn_block_four_block+31, y_down, width, heitd))
+		##pygame.draw.rect(screen, (255, 255, 0), (random_spawn_block_four_block, y_down+31, width, heitd))
+		##pygame.draw.rect(screen, (255, 255, 0), (random_spawn_block_four_block+31, y_down+31, width, heitd))
+		pygame.draw.rect(screen, (139, 0, 139), (random_spawn_block_pis_block, y_down, width, heitd))
+		pygame.draw.rect(screen, (139, 0, 139), (random_spawn_block_pis_block, y_down+31, width, heitd))
+		pygame.draw.rect(screen, (139, 0, 139), (random_spawn_block_pis_block+31, y_down+31, width, heitd))
+		pygame.draw.rect(screen, (139, 0, 139), (random_spawn_block_pis_block, y_down+62, width, heitd))
+
+
+	def pis_block(self):
+		pygame.draw.rect(screen, (139, 0, 139), (random_spawn_block_pis_block, y_down, width, heitd))
+		pygame.draw.rect(screen, (139, 0, 139), (random_spawn_block_pis_block, y_down+31, width, heitd))
+		pygame.draw.rect(screen, (139, 0, 139), (random_spawn_block_pis_block+31, y_down+31, width, heitd))
+		pygame.draw.rect(screen, (139, 0, 139), (random_spawn_block_pis_block, y_down+62, width, heitd))
+
+
 
 
 
@@ -23,8 +36,12 @@ runing = True
 width = heitd = 30
 margin = 1
 y_down = 0
-random_spawn_block = random.choice([283,314,345,376,407,438])
+#random_spawn_block = random.choice([283,314,345,376,407,438])
 clock = pygame.time.Clock()
+random_spawn_block_four_block = random.choice([283, 314, 345, 376, 407, 438])
+random_spawn_block_pis_block = random.choice([283, 314, 345, 376, 407, 438])
+
+
 
 # Активация библиотеки pygame
 pygame.init()
@@ -53,16 +70,20 @@ pygame.display.set_caption("TETRIS")
 # Создание вечного цикла
 while runing:
 
-	# Обработка пола центральной карты (дабы блоки не проваливались через мир)
-	if y_down<620:
-		y_down = y_down + 1
-	elif y_down>=620:
-		y_down=620
+
+	# Обработка пола центральной карты (дабы блоки не проваливались через мир) Если, что крайний y=558 корд.
+	if y_down==558:
+		y_down=558
+	elif y_down==527:
+		y_down==527
+	elif y_down<558:
+		y_down = y_down + 31
 
 
 	# Указываем цвет фона
 	screen.fill((0, 128, 255))
 
+	print(y_down)
 
 
 	#for i in range(10000):
@@ -98,7 +119,7 @@ while runing:
 		for row2 in range(20):
 			x = col2*width+(col2+1)*margin+220
 			y = row2*heitd+(row2+1)*margin+0
-			pygame.draw.rect(screen,(255,255,0), (x,y,width,heitd))
+			pygame.draw.rect(screen,(0,191,255), (x,y,width,heitd))
 
 
 
@@ -114,11 +135,12 @@ while runing:
 	screen.blit(text_tet_CRT, (10, 50))
 
 	createblock = CreateBlock()
+	#createblock.pis_block()
 	# Обновление экрана
 	pygame.display.update()
 
 	# Ограничение кадров игры
-	clock.tick(20)
+	clock.tick(3)
 
 
 
