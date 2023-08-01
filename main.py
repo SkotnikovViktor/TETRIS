@@ -11,14 +11,11 @@ class CreateBlock():
 
 	# Создания тетрис блока (2х2) (кубик)
 	def __init__(self):
-		##pygame.draw.rect(screen, (255, 255, 0), (random_spawn_block_four_block, y_down, width, heitd))
-		##pygame.draw.rect(screen, (255, 255, 0), (random_spawn_block_four_block+31, y_down, width, heitd))
-		##pygame.draw.rect(screen, (255, 255, 0), (random_spawn_block_four_block, y_down+31, width, heitd))
-		##pygame.draw.rect(screen, (255, 255, 0), (random_spawn_block_four_block+31, y_down+31, width, heitd))
-		pygame.draw.rect(screen, (139, 0, 139), (random_spawn_block_pis_block, y_down, width, heitd))
-		pygame.draw.rect(screen, (139, 0, 139), (random_spawn_block_pis_block, y_down+31, width, heitd))
-		pygame.draw.rect(screen, (139, 0, 139), (random_spawn_block_pis_block+31, y_down+31, width, heitd))
-		pygame.draw.rect(screen, (139, 0, 139), (random_spawn_block_pis_block, y_down+62, width, heitd))
+		pygame.draw.rect(screen, (255, 255, 0), (random_spawn_block_four_block, y_down, width, heitd))
+		pygame.draw.rect(screen, (255, 255, 0), (random_spawn_block_four_block+31, y_down, width, heitd))
+		pygame.draw.rect(screen, (255, 255, 0), (random_spawn_block_four_block, y_down+31, width, heitd))
+		pygame.draw.rect(screen, (255, 255, 0), (random_spawn_block_four_block+31, y_down+31, width, heitd))
+
 
 
 	def pis_block(self):
